@@ -6,6 +6,9 @@ apache.developer_configs
   💜 Contact: 9rrrrm@gmail.com
 
 ---
+![Harry Potter vhost test](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbLbPbo%2FbtsKFm4xPzh%2FR6kZFqKV7HnZSlA9x3WaI0%2Fimg.png)
+![Harry Potter vhost test](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc4BOb8%2FbtsKF52jbDo%2FDtWOowZiAF6l9VIR96otU0%2Fimg.png)
+  
 Ansible을 이용하여 관리 호스트를 Apache vhost 서버로 설정해주는 Ansible-galaxy role 입니다.
 - 사용자를 생성합니다.
 - 방화벽 서비스를 설치하고 기동합니다. 서비스할 서비스 포트와 비표준 포트를 오픈합니다.
@@ -55,6 +58,9 @@ apache.developer_configs
   💜 Contact: 9rrrrm@gmail.com
 
 ---
+![Harry Potter vhost test](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbLbPbo%2FbtsKFm4xPzh%2FR6kZFqKV7HnZSlA9x3WaI0%2Fimg.png)
+![Harry Potter vhost test](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc4BOb8%2FbtsKF52jbDo%2FDtWOowZiAF6l9VIR96otU0%2Fimg.png)
+
 This is an Ansible Galaxy role that configures the managed host as an Apache vhost server using Ansible.
 - Creates users.
 - Installs and starts the firewall service, opening the service and any non-standard ports needed.
