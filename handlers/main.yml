@@ -1,0 +1,12 @@
+---
+# handlers file for apache.developer_configs
+
+- name: restart_firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted
+
+- name: restart_httpd
+  ansible.builtin.systemd:
+    name: httpd
+    state: restarted

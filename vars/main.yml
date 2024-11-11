@@ -1,0 +1,13 @@
+---
+# vars file for apache.developer_configs
+
+# EXAMPLES
+web_developers:
+  - username: student1
+    pw_hash: Gryffindor
+    name: Harry Potter
+    user_port: 9081
+  - username: student2
+    pw_hash: Gryffindor
+    name: Ronald Weasley
+    user_port: 9082

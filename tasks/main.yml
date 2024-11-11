@@ -1,0 +1,85 @@
+---
+# tasks file for apache.developer_configs
+
+# useradd
+- name: Creating user from secret.yml
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    password: "{{ item.pw_hash | password_hash('sha512')}}"
+  loop: "{{ web_developers }}"
+
+# firewalld
+- name: Install firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: latest
+
+- name: Enable and start firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Open the port for http, https
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop:
+    - http
+    - https
+
+- name: Open the port for 9081, 9082
+  ansible.posix.firewalld:
+    port: "{{ item.user_port }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop: "{{ web_developers }}"
+  notify:
+    - restart_firewalld
+
+# httpd
+- name: Ensure httpd is installed
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+- name: Ensure httpd is started and enabled
+  ansible.builtin.systemd:
+    name: httpd
+    state: started
+    enabled: true
+  ignore_errors: true
+
+- name: httpd.conf file is installed
+  ansible.builtin.copy:
+    src: files/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: vhost.conf file is installed
+  ansible.builtin.template:
+    src: developer.conf.j2
+    dest: /etc/httpd/conf.d/vhost.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Create HTML content directory
+  ansible.builtin.file:
+    path: "/var/www/vhosts/{{ ansible_hostname }}_{{ item.user_port }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ web_developers }}"
+
+- name: HTML content is installed
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: "/var/www/vhosts/{{ ansible_hostname }}_{{ item.user_port }}/index.html"
+  loop: "{{ web_developers }}"
+  notify:
+    - restart_httpd

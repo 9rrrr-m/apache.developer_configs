@@ -1,0 +1,29 @@
+# {{ ansible_managed }}
+
+<VirtualHost *:9081>
+    ServerAdmin webmaster@{{ ansible_fqdn }}
+    ServerName {{ ansible_fqdn }}
+    ErrorLog logs/{{ ansible_hostname }}-error.log
+    CustomLog logs/{{ ansible_hostname }}-common.log common
+    DocumentRoot /var/www/vhosts/{{ ansible_hostname }}_9081/
+
+    <Directory /var/www/vhosts/{{ ansible_hostname }}_9081/>
+    Options +Indexes +FollowSymlinks +Includes
+    Order allow,deny
+    Allow from all
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:9082>
+    ServerAdmin webmaster@{{ ansible_fqdn }}
+    ServerName {{ ansible_fqdn }}
+    ErrorLog logs/{{ ansible_hostname }}-error.log
+    CustomLog logs/{{ ansible_hostname }}-common.log common
+    DocumentRoot /var/www/vhosts/{{ ansible_hostname }}_9082/
+
+    <Directory /var/www/vhosts/{{ ansible_hostname }}_9082/>
+    Options +Indexes +FollowSymlinks +Includes
+    Order allow,deny
+    Allow from all
+    </Directory>
+</VirtualHost>
